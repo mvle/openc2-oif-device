@@ -93,7 +93,9 @@ COMMAND_Q1 = json.dumps({
                 'action': 'query',
                 'target': {
                     'th': {
-                        'huntflows': 'hunts/huntflow'
+                        'huntflows': {
+                            'path': './'
+                        }
                     }
                 }
             }
@@ -488,7 +490,7 @@ if __name__ == '__main__':
         connect_to_broker()
         subscribe_to_topics()
         signal.signal(signal.SIGINT, signal_handler)
-        publish(TOPIC_REQUEST, COMMAND_CASP_03)
+        publish(TOPIC_REQUEST, COMMAND_Q1)
         client.loop_forever()
     else:
         print("MQTT is not enabled")    
