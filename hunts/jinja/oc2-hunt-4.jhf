@@ -7,8 +7,8 @@
 # returns:
 #   - remoteip (ipv4-addr)
 
-psc = LOAD {{ filename_1 }} AS process
-hosts = LOAD {{ filename_2 }} AS x-oca-asset
+psc = LOAD ./hunts/results/{{ filename_1 }} AS process
+hosts = LOAD ./hunts/results/{{ filename_2 }} AS x-oca-asset
 
 ps = GET process FROM stixshifter://casp2024-edr
      WHERE x_unique_id = psc.x_unique_id
@@ -23,4 +23,4 @@ nt_fw = GET network-traffic
 
 remoteip = FIND ipv4-addr ACCEPTED nt_fw
 
-SAVE remoteip TO remoteip.json
+SAVE remoteip TO ./hunts/results/remoteip.json
